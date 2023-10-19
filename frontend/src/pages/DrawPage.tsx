@@ -17,7 +17,7 @@ const DrawPage: React.FC = () => {
         />
       </DraggableWindow>
 
-      <DraggableWindow locked={true}>
+      <DraggableWindow locked={false}>
         <input type="color" />
       </DraggableWindow>
     </>

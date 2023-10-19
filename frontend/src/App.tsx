@@ -1,9 +1,13 @@
 import React from "react";
 import "./index.css";
-import DrawPage from "./pages/DrawPage";
+import { Outlet } from "react-router-dom";
 
 function App(): React.JSX.Element {
-  return <DrawPage />;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 }
 
 export default App;
