@@ -1,11 +1,13 @@
 import Canvas from "../components/Canvas";
-import DraggableWindow from "./DraggableWindow";
+import DraggableWindow from "../components/DraggableWindow";
 
 const DrawPage: React.FC = () => {
-  function reset() {}
   return (
     <>
-      <DraggableWindow style={{ fontSize: 0 }}>
+      <DraggableWindow
+        initialPosition={{ x: 100, y: 50 }}
+        style={{ fontSize: 0 }}
+      >
         <Canvas
           style={{
             backgroundColor: "#fafafa",
@@ -15,7 +17,7 @@ const DrawPage: React.FC = () => {
         />
       </DraggableWindow>
 
-      <DraggableWindow>
+      <DraggableWindow locked={true}>
         <input type="color" />
       </DraggableWindow>
     </>
