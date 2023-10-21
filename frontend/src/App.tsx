@@ -1,11 +1,12 @@
 import React from "react";
 import "./index.css";
-import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function App(): React.JSX.Element {
   return (
     <>
-      <Outlet />
+      <Link to={"/draw"}>Go Draw</Link>
+      <Link to={"/login"}>Go login</Link>
     </>
   );
 }
