@@ -49,14 +49,3 @@ func SignUserUp(c echo.Context) error {
 		"message": "Successful signup",
 	})
 }
-
-func AuthController(c echo.Context) error {
-
-	var user User
-
-	if err := c.Bind(&user); err != nil {
-		return c.String(http.StatusBadRequest, "Bad request")
-	}
-
-	return c.JSON(http.StatusCreated, user)
-}
