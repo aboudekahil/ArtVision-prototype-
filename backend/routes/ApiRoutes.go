@@ -19,7 +19,7 @@ func ApiRoutes(apiGroup *echo.Group) {
 		),
 	)
 
-	apiGroup.GET("/gay", func(c echo.Context) error {
+	apiGroup.GET("/echo", func(c echo.Context) error {
 		token := c.Get("user").(*jwt.Token)
 
 		return c.JSON(http.StatusAccepted, token)

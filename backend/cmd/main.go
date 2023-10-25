@@ -20,8 +20,10 @@ func main() {
 		Validator: validator.New(validator.WithRequiredStructEnabled()),
 	}
 
-	routes.ApiRoutes(e.Group("/api"))
-	routes.AuthRoute(e.Group("/auth"))
+	apiGroup := e.Group("/api")
+
+	routes.AuthRoute(apiGroup.Group("/auth"))
+	routes.ApiRoutes(apiGroup.Group("/tfy"))
 
 	e.Logger.Fatal(e.Start(os.Getenv("APP_PORT")))
 }

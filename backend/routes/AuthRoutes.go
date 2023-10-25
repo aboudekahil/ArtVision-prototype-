@@ -8,4 +8,5 @@ import (
 
 func AuthRoute(authGroup *echo.Group) {
 	authGroup.POST("/signup", controllers.SignUserUp)
+	authGroup.POST("/signin", controllers.SignUserIn)
 }

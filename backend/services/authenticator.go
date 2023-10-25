@@ -1,6 +1,7 @@
 package services
 
 import (
+	"artvision/backend/config"
 	"os"
 	"time"
 
@@ -8,8 +9,7 @@ import (
 )
 
 type JwtUserClaims struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Id int64 `json:"id"`
 }
 
 type JwtClaims struct {
@@ -34,4 +34,46 @@ func CreateJwtToken(userClaims JwtUserClaims) (string, error) {
 	}
 
 	return token, nil
+}
+
+func AuthenticateUser(email, password string) (int64, error) {
+	db := config.Db
+
+	row := db.QueryRow(
+		"SELECT user_id FROM users WHERE user_email = ? AND user_password = ?",
+		email,
+		password,
+	)
+
+	var id int64
+
+	err := row.Scan(&id)
+
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
+}
+
+func AddNewUser(email, password string) (int64, error) {
+	db := config.Db
+
+	res, err := db.Exec(
+		"INSERT INTO users (user_email, user_password) VALUE (?, ?)",
+		email,
+		password,
+	)
+
+	if err != nil {
+		return 0, err
+	}
+
+	id, err := res.LastInsertId()
+
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
 }
