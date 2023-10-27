@@ -21,8 +21,6 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
   const _style: CSSProperties = {
     display: "inline-block",
     touchAction: "none",
-    border: "4px solid #4444dd",
-    borderRadius: "5px",
     ...style,
   };
 

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import LocalStorageHandler from "../utils/LocalStorageHandler";
 import { LocalStorageUser } from "../shared.types";
+import Header from "../components/Header";
 
 const BasePage = () => {
   const navigate = useNavigate();
@@ -11,11 +12,9 @@ const BasePage = () => {
     if (!user) navigate("/signin");
   }, []);
 
-  let curr = LocalStorageHandler.getFromKeyParsed<LocalStorageUser>("curru");
-  console.log(curr);
   return (
     <>
-      {curr && <img src={curr?.user.profile_image} />}
+      <Header />
       <Outlet />
     </>
   );
