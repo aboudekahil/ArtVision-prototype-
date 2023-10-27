@@ -5,15 +5,17 @@ import { LocalStorageUser } from "../shared.types";
 
 const BasePage = () => {
   const navigate = useNavigate();
-
   useEffect(() => {
     let user = LocalStorageHandler.getFromKeyParsed<LocalStorageUser>("curru");
 
     if (!user) navigate("/signin");
   }, []);
 
+  let curr = LocalStorageHandler.getFromKeyParsed<LocalStorageUser>("curru");
+  console.log(curr);
   return (
     <>
+      {curr && <img src={curr?.user.profile_image} />}
       <Outlet />
     </>
   );

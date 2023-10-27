@@ -36,33 +36,32 @@ func CreateJwtToken(userClaims JwtUserClaims) (string, error) {
 	return token, nil
 }
 
-func AuthenticateUser(email, password string) (int64, error) {
+func AuthenticateUser(email, password string) (id int64, profileImage string, err error) {
 	db := config.Db
 
 	row := db.QueryRow(
-		"SELECT user_id FROM users WHERE user_email = ? AND user_password = ?",
+		"SELECT user_id, user_profile FROM users WHERE user_email = ? AND user_password = ?",
 		email,
 		password,
 	)
 
-	var id int64
-
-	err := row.Scan(&id)
+	err = row.Scan(&id, &profileImage)
 
 	if err != nil {
-		return 0, err
+		return 0, "", err
 	}
 
-	return id, nil
+	return id, profileImage, nil
 }
 
-func AddNewUser(email, password string) (int64, error) {
+func AddNewUser(email, password, imagePath string) (int64, error) {
 	db := config.Db
 
 	res, err := db.Exec(
-		"INSERT INTO users (user_email, user_password) VALUE (?, ?)",
+		"INSERT INTO users (user_email, user_password, user_profile) VALUE (?, ?, ?)",
 		email,
 		password,
+		imagePath,
 	)
 
 	if err != nil {
