@@ -3,6 +3,7 @@ import { authenticate } from "../services/userService";
 import Requests from "../http-common";
 import LocalStorageHandler from "../utils/LocalStorageHandler";
 import { useNavigate } from "react-router-dom";
+import { Input, Label, TextField } from "react-aria-components";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -22,17 +23,20 @@ const SignUpPage = () => {
     navigate("/");
   };
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="email">Enter your email</label>
-        <input id="email" name="email" type="email" />
-
-        <label htmlFor="password">Enter your password</label>
-        <input id="password" name="password" type="password" />
+    <div className="flex h-full w-full justify-center items-center">
+      <form className="" onSubmit={onSubmit}>
+        <TextField type="email" isRequired={true}>
+          <Label>Email</Label>
+          <Input required />
+        </TextField>
+        <TextField type="password" isRequired>
+          <Label>Password</Label>
+          <Input required />
+        </TextField>
 
         <button>Send data!</button>
       </form>
-    </>
+    </div>
   );
 };
 

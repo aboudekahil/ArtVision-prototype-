@@ -22,7 +22,7 @@ const BasePage = () => {
 
   return (
     <>
-      <Header profile={artUser?.user.profile_image} />
+      <Header user={artUser} />
       <Outlet />
     </>
   );

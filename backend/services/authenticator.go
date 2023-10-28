@@ -21,7 +21,7 @@ func CreateJwtToken(userClaims JwtUserClaims) (string, error) {
 	claims := JwtClaims{
 		userClaims,
 		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(20 * time.Second).Unix(),
+			ExpiresAt: time.Now().Add(24 * 31 * 12 * time.Hour).Unix(),
 		},
 	}
 

@@ -1,17 +1,25 @@
 import { Button } from "react-aria-components";
 import PopupMenu from "./PopupMenu";
+import { userProfileImage } from "../services/userService";
+import { LocalStorageUser } from "../shared.types";
 
 type UserProfileMenuProps = {
-  profile?: string;
+  user?: LocalStorageUser;
 };
 
-const UserProfileMenu: React.FC<UserProfileMenuProps> = ({ profile }) => {
+const UserProfileMenu: React.FC<UserProfileMenuProps> = ({ user }) => {
   return (
     <PopupMenu className="ml-auto m-5">
       <figure>
         <img
           className="w-8 rounded-full"
-          src={profile || "/pfpimages/defaultImage.png"}
+          src={user?.user.profile_image || "/pfpimages/defaultImage.png"}
+          onError={async (e) => {
+            try {
+              e.currentTarget.src = "/pfpimages/defaultImage.png";
+              await userProfileImage(user?.user.email as string);
+            } catch (error) {}
+          }}
           alt="profile picture"
           aria-label="profile picture"
         />

@@ -1,12 +1,13 @@
 import React from "react";
 import ArtLink from "./ArtLink";
 import UserProfileMenu from "./UserProfileMenu";
+import { LocalStorageUser } from "../shared.types";
 
 type HeaderProps = {
-  profile?: string;
+  user?: LocalStorageUser;
 };
 
-const Header: React.FC<HeaderProps> = ({ profile }) => {
+const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
     <header className="bg-ArtBlack2 w-full h-20">
       <nav className="w-full flex items-center align-middle h-full">
@@ -29,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ profile }) => {
           <h1 className="text-inherit">Following</h1>
         </ArtLink>
 
-        <UserProfileMenu profile={profile} />
+        <UserProfileMenu user={user} />
       </nav>
     </header>
   );

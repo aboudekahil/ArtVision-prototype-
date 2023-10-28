@@ -29,21 +29,21 @@ func SignUserUp(c echo.Context) error {
 	user := new(UserSign)
 
 	if err := c.Bind(&user); err != nil {
-		return utils.HandleError(c, err, http.StatusBadRequest, "Bad Request")
+		return utils.Handler.BadRequest(c, err)
 	}
 
 	if err := c.Validate(user); err != nil {
-		return utils.HandleError(c, err, http.StatusBadRequest, "Bad Request")
+		return utils.Handler.BadRequest(c, err)
 	}
 
 	imagePath, err := avProfile.GenerateProfilePictureFromEmail(user.Email)
 	if err != nil {
-		return utils.HandleError(c, err, http.StatusInternalServerError, "Something went wrong")
+		return utils.Handler.InternalServerError(c, err)
 	}
 
 	id, err := services.AddNewUser(user.Email, user.Password, string(imagePath))
 	if err != nil {
-		return utils.HandleError(c, err, http.StatusInternalServerError, "Something went wrong")
+		return utils.Handler.InternalServerError(c, err)
 	}
 
 	token, err := services.CreateJwtToken(
@@ -52,11 +52,7 @@ func SignUserUp(c echo.Context) error {
 		},
 	)
 	if err != nil {
-		return utils.HandleError(c,
-			err,
-			http.StatusInternalServerError,
-			"Something went wrong",
-		)
+		return utils.Handler.InternalServerError(c, err)
 	}
 
 	return c.JSON(http.StatusCreated, SignUserResponse{
@@ -79,7 +75,7 @@ func SignUserIn(c echo.Context) error {
 		user.Password)
 
 	if err != nil {
-		return c.String(http.StatusUnauthorized, "Unauthorized")
+		return utils.Handler.HandleError(c, err, http.StatusUnauthorized, "Unauthorized")
 	}
 
 	token, err := services.CreateJwtToken(
@@ -90,7 +86,7 @@ func SignUserIn(c echo.Context) error {
 
 	if err != nil {
 		log.Println("Error creating JWT token", err)
-		return c.String(http.StatusInternalServerError, "Something went wrong")
+		return utils.Handler.InternalServerError(c, err)
 	}
 
 	c.Response().Header().Set("Authorization", "Bearer "+token)

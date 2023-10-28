@@ -1,10 +1,9 @@
 package routes
 
 import (
-	"net/http"
+	"artvision/backend/controllers"
 	"os"
 
-	"github.com/golang-jwt/jwt/v5"
 	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
 )
@@ -19,10 +18,5 @@ func ApiRoutes(apiGroup *echo.Group) {
 		),
 	)
 
-	apiGroup.GET("/echo", func(c echo.Context) error {
-		token := c.Get("user").(*jwt.Token)
-
-		return c.JSON(http.StatusAccepted, token)
-	})
-
+	apiGroup.POST("/pfp", controllers.ProfilePictureOops)
 }
