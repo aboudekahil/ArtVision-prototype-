@@ -1,16 +1,18 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
+import { Button, DialogTrigger, Popover } from "react-aria-components";
 
-type PopUpMenuChild = string | JSX.Element;
-
-type PopUpMenu = {
+type PopupMenuProps = {
+  children: [React.JSX.Element, React.JSX.Element];
   className?: string;
-  children?: PopUpMenuChild | PopUpMenuChild[];
 };
 
-export const PopUpMenu: React.FC<PopUpMenu> = ({ className, children }) => {
-  return <div className={className}>{children}</div>;
+const PopupMenu: React.FC<PopupMenuProps> = ({ children, className }) => {
+  return (
+    <DialogTrigger>
+      <Button className={className}>{children[0]}</Button>
+      <Popover>{children[1]}</Popover>
+    </DialogTrigger>
+  );
 };
 
-export const PopUpMenuItem: React.FC<PropsWithChildren> = ({ children }) => {
-  return <>{children}</>;
-};
+export default PopupMenu;

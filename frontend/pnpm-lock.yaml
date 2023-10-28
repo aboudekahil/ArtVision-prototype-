@@ -20,6 +20,9 @@ dependencies:
   react-aria:
     specifier: ^3.29.1
     version: 3.29.1(react-dom@18.2.0)(react@18.2.0)
+  react-aria-components:
+    specifier: 1.0.0-beta.2
+    version: 1.0.0-beta.2(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -1213,6 +1216,16 @@ packages:
       '@react-stately/select': 3.5.5(react@18.2.0)
       '@react-stately/utils': 3.8.0(react@18.2.0)
       '@react-types/combobox': 3.8.1(react@18.2.0)
+      '@react-types/shared': 3.21.0(react@18.2.0)
+      '@swc/helpers': 0.5.3
+      react: 18.2.0
+    dev: false
+
+  /@react-stately/data@3.10.3(react@18.2.0):
+    resolution: {integrity: sha512-cC9mxCZU4N9GbdOB4g2/J8+W+860GvBd874to0ObSc/XOR4VbuIsxAFIabW5UwmJV+XaqqK4TUBG0C6YScXeWQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
       '@react-types/shared': 3.21.0(react@18.2.0)
       '@swc/helpers': 0.5.3
       react: 18.2.0
@@ -3045,6 +3058,29 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
+  /react-aria-components@1.0.0-beta.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-XiLpbcOzZlurgsM5B+bdQ77JTgZ50HBmvEr25taicBsv/DiCCqFL9G+J0TDOVqetxAYL8TvZXcm076pxDL7uCQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@internationalized/date': 3.5.0
+      '@react-aria/focus': 3.14.3(react@18.2.0)
+      '@react-aria/interactions': 3.19.1(react@18.2.0)
+      '@react-aria/utils': 3.21.1(react@18.2.0)
+      '@react-stately/table': 3.11.2(react@18.2.0)
+      '@react-types/calendar': 3.4.1(react@18.2.0)
+      '@react-types/grid': 3.2.2(react@18.2.0)
+      '@react-types/shared': 3.21.0(react@18.2.0)
+      '@react-types/table': 3.9.0(react@18.2.0)
+      '@swc/helpers': 0.5.3
+      react: 18.2.0
+      react-aria: 3.29.1(react-dom@18.2.0)(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+      react-stately: 3.27.1(react@18.2.0)
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
   /react-aria@3.29.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-dDoaTh5fCaD3kO0kv49pqUUOsXRGuqFX7owQaly/RhWkBw/dlIYkHRVdOatllI/v4h1/Ne40QOXl15aAISozlA==}
     peerDependencies:
@@ -3125,6 +3161,36 @@ packages:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': 1.10.0
+      react: 18.2.0
+    dev: false
+
+  /react-stately@3.27.1(react@18.2.0):
+    resolution: {integrity: sha512-qHhivqOpyATaWwoj3xl3IqqoEnib+dsl2vYlOz92CT5Ntm6lprF7KO+LkxdkS0SnUckdGewFM1NjCmbK7wPJgw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-stately/calendar': 3.4.1(react@18.2.0)
+      '@react-stately/checkbox': 3.5.1(react@18.2.0)
+      '@react-stately/collections': 3.10.2(react@18.2.0)
+      '@react-stately/combobox': 3.7.1(react@18.2.0)
+      '@react-stately/data': 3.10.3(react@18.2.0)
+      '@react-stately/datepicker': 3.8.0(react@18.2.0)
+      '@react-stately/dnd': 3.2.5(react@18.2.0)
+      '@react-stately/list': 3.10.0(react@18.2.0)
+      '@react-stately/menu': 3.5.6(react@18.2.0)
+      '@react-stately/numberfield': 3.6.2(react@18.2.0)
+      '@react-stately/overlays': 3.6.3(react@18.2.0)
+      '@react-stately/radio': 3.9.1(react@18.2.0)
+      '@react-stately/searchfield': 3.4.6(react@18.2.0)
+      '@react-stately/select': 3.5.5(react@18.2.0)
+      '@react-stately/selection': 3.14.0(react@18.2.0)
+      '@react-stately/slider': 3.4.4(react@18.2.0)
+      '@react-stately/table': 3.11.2(react@18.2.0)
+      '@react-stately/tabs': 3.6.1(react@18.2.0)
+      '@react-stately/toggle': 3.6.3(react@18.2.0)
+      '@react-stately/tooltip': 3.4.5(react@18.2.0)
+      '@react-stately/tree': 3.7.3(react@18.2.0)
+      '@react-types/shared': 3.21.0(react@18.2.0)
       react: 18.2.0
     dev: false
 
@@ -3368,6 +3434,14 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}

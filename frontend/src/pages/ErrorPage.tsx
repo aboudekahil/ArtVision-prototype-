@@ -1,4 +1,4 @@
-import { Link, useRouteError } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 import DraggableWindow from "../components/DraggableWindow";
 import ArtLink from "../components/ArtLink";
 
