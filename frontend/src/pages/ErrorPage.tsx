@@ -1,5 +1,6 @@
 import { Link, useRouteError } from "react-router-dom";
 import DraggableWindow from "../components/DraggableWindow";
+import ArtLink from "../components/ArtLink";
 
 const ErrorPage: React.FC = () => {
   const error = useRouteError() as {
@@ -19,7 +20,7 @@ const ErrorPage: React.FC = () => {
       <span className="flex justify-center items-center">
         <span className="text-lg text-Porple">-&gt; </span>
         <h1 className="font-Inter text-5xl text-Porple">
-          <Link to={"/"}>Oops!</Link>
+          <ArtLink to={"/"}>Oops!</ArtLink>
         </h1>
       </span>
       <em className="font-Inter text-4xl">
