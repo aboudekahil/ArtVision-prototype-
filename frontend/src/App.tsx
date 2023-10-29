@@ -8,6 +8,8 @@ import BasePage from "./pages/BasePage";
 import LocalStorageHandler from "./utils/LocalStorageHandler";
 import Requests from "./http-common";
 import { LocalStorageUser } from "./shared.types";
+import CreateRoom from "./pages/CreateRoom";
+import Room from "./pages/Rooms";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +25,11 @@ const router = createBrowserRouter([
         path: "/draw",
         element: <DrawPage />,
       },
-      {},
+      {
+        path: "/create",
+        element: <CreateRoom />,
+      },
+      { path: "/room/:roomID", element: <Room /> },
     ],
   },
   {
