@@ -9,5 +9,5 @@ export async function authenticate(user: {
 }
 
 export async function userProfileImage(email: string): Promise<boolean> {
-  return Requests.post("tfy/pfp", { email: email });
+  return Requests.post("pfp", { email: email });
 }
