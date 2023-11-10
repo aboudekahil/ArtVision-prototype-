@@ -13,11 +13,6 @@ body {
   overflow: hidden;
   background-color: #0e0e10;
 }
-
-.no-drag {
-  user-drag: none;
-}
-
 * {
   color: white;
 }

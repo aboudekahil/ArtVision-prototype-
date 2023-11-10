@@ -9,13 +9,13 @@ type ArtLinkProps = {
   key?: React.Key;
 } & AriaLinkOptions;
 
-export default React.forwardRef<
+const ArtLink = React.forwardRef<
   HTMLAnchorElement,
   PropsWithChildren<ArtLinkProps>
 >(({ to, className, key, children, ...props }, ref) => {
   const _ref = useRef(null);
 
-  let { linkProps } = useLink(props, _ref);
+  const { linkProps } = useLink(props, _ref);
   return (
     <Link
       className={className}
@@ -28,3 +28,5 @@ export default React.forwardRef<
     </Link>
   );
 });
+
+export default ArtLink;

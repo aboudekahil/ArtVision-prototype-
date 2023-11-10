@@ -11,7 +11,7 @@ type CustomValidator struct {
 	Validator *validator.Validate
 }
 
-var Validate CustomValidator
+var Validator = validator.New()
 
 func (cv *CustomValidator) Validate(i interface{}) error {
 	if err := cv.Validator.Struct(i); err != nil {

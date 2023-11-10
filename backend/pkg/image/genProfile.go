@@ -49,7 +49,7 @@ func GenerateProfilePictureFromEmail(seed string) (FilePath, error) {
 }
 
 func outputImage(image image.Image, path FilePath) error {
-	newImage := resize.Resize(70, 70, image, resize.NearestNeighbor)
+	newImage := resize.Resize(1024, 1024, image, resize.NearestNeighbor)
 
 	f, err := os.Create(string(path))
 
@@ -110,7 +110,7 @@ func randomColor(randSource *rand.Rand) Color {
 
 func hashSeed(seed string) (hash int64) {
 	for _, char := range seed {
-		hash = (hash*31 + int64(char))
+		hash = hash*31 + int64(char)
 	}
 
 	return

@@ -1,15 +1,20 @@
 package services
 
 import (
-	"artvision/backend/config"
 	"os"
 	"time"
+
+	"artvision/backend/config"
 
 	"github.com/golang-jwt/jwt"
 )
 
 type JwtUserClaims struct {
-	Id int64 `json:"id"`
+	Id       int64  `json:"id"`
+	Email    string `json:"email"`
+	Name     string `json:"name,omitempty"`
+	Username string `json:"username,omitempty"`
+	Bio      string `json:"bio,omitempty"`
 }
 
 type JwtClaims struct {
@@ -36,7 +41,11 @@ func CreateJwtToken(userClaims JwtUserClaims) (string, error) {
 	return token, nil
 }
 
-func AuthenticateUser(email, password string) (id int64, profileImage string, err error) {
+func AuthenticateUser(email, password string) (
+	id int64,
+	profileImage string,
+	err error,
+) {
 	db := config.Db
 
 	row := db.QueryRow(

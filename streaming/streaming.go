@@ -2,8 +2,10 @@ package streaming
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"sync"
 
 	"github.com/gorilla/websocket"
 )
@@ -38,25 +40,29 @@ type broadcastMsg struct {
 var broadcast = make(chan broadcastMsg)
 
 func broadcaster() {
+	var m = sync.RWMutex{}
 	for {
 		msg := <-broadcast
 
 		for _, client := range AllRooms.Map[msg.RoomID] {
+			m.Lock()
 			if client.Conn != msg.Client {
+				log.Println(msg.Message)
 				err := client.Conn.WriteJSON(msg.Message)
 
 				if err != nil {
 					log.Fatal(err)
 					client.Conn.Close()
+					pop AllRooms.Map[msg.RoomID]
 				}
 			}
+			m.Unlock()
 		}
 	}
 }
 
 func JoinRoomRequestHandler(w http.ResponseWriter, r *http.Request) {
 	roomID, ok := r.URL.Query()["roomID"]
-
 	if !ok {
 		log.Println("RoomID missing in URL paramters")
 		return
@@ -76,8 +82,9 @@ func JoinRoomRequestHandler(w http.ResponseWriter, r *http.Request) {
 		var msg broadcastMsg
 
 		err := ws.ReadJSON(&msg.Message)
-		if err != nil {
-			log.Fatal("Read Error:", err)
+		if err != nil && err.Error() != "websocket: close 1001 (going away)" {
+			fmt.Print(err)
+			log.Fatal("Read Error: ", err)
 		}
 
 		msg.Client = ws

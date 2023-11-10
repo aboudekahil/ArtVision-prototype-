@@ -10,7 +10,12 @@ import (
 type ErrorHandler struct {
 }
 
-func (self ErrorHandler) HandleError(c echo.Context, err error, statusCode int, message string) error {
+func (self ErrorHandler) HandleError(
+	c echo.Context,
+	err error,
+	statusCode int,
+	message string,
+) error {
 	log.Println(message, err)
 	return c.String(statusCode, message)
 }
@@ -20,7 +25,12 @@ func (self ErrorHandler) BadRequest(c echo.Context, err error) error {
 }
 
 func (self ErrorHandler) InternalServerError(c echo.Context, err error) error {
-	return self.HandleError(c, err, http.StatusInternalServerError, "Something went wrong")
+	return self.HandleError(
+		c,
+		err,
+		http.StatusInternalServerError,
+		"Something went wrong",
+	)
 }
 
 var Handler ErrorHandler

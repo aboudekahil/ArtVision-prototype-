@@ -13,6 +13,10 @@ class LocalStorageHandler {
     const svalue = JSON.stringify(value);
     localStorage.setItem(key, svalue);
   }
+
+  clearItem(key: string): void {
+    localStorage.removeItem(key);
+  }
 }
 
 export default new LocalStorageHandler();

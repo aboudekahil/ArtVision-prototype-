@@ -1,11 +1,14 @@
 package controllers
 
 import (
+	"database/sql"
+	"errors"
+	"log"
+	"net/http"
+
 	avProfile "artvision/backend/pkg/image"
 	"artvision/backend/services"
 	"artvision/backend/utils"
-	"log"
-	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
@@ -48,20 +51,23 @@ func SignUserUp(c echo.Context) error {
 
 	token, err := services.CreateJwtToken(
 		services.JwtUserClaims{
-			Id: id,
+			Id:    id,
+			Email: user.Email,
 		},
 	)
 	if err != nil {
 		return utils.Handler.InternalServerError(c, err)
 	}
 
-	return c.JSON(http.StatusCreated, SignUserResponse{
-		Token: "Bearer " + token,
-		User: UserResponse{
-			Email:        user.Email,
-			ProfileImage: string(imagePath),
+	return c.JSON(
+		http.StatusCreated, SignUserResponse{
+			Token: "Bearer " + token,
+			User: UserResponse{
+				Email:        user.Email,
+				ProfileImage: string(imagePath),
+			},
 		},
-	})
+	)
 }
 
 func SignUserIn(c echo.Context) error {
@@ -71,16 +77,26 @@ func SignUserIn(c echo.Context) error {
 		return c.String(http.StatusBadRequest, "Bad request")
 	}
 
-	id, profileImage, err := services.AuthenticateUser(user.Email,
-		user.Password)
+	id, profileImage, err := services.AuthenticateUser(
+		user.Email,
+		user.Password,
+	)
 
-	if err != nil {
-		return utils.Handler.HandleError(c, err, http.StatusUnauthorized, "Unauthorized")
+	if errors.Is(err, sql.ErrNoRows) {
+		return utils.Handler.HandleError(
+			c,
+			err,
+			http.StatusUnauthorized,
+			"Unauthorized",
+		)
+	} else if err != nil {
+		return utils.Handler.InternalServerError(c, err)
 	}
 
 	token, err := services.CreateJwtToken(
 		services.JwtUserClaims{
-			Id: id,
+			Id:    id,
+			Email: user.Email,
 		},
 	)
 
@@ -91,11 +107,13 @@ func SignUserIn(c echo.Context) error {
 
 	c.Response().Header().Set("Authorization", "Bearer "+token)
 
-	return c.JSON(http.StatusOK, SignUserResponse{
-		Token: token,
-		User: UserResponse{
-			Email:        user.Email,
-			ProfileImage: profileImage,
+	return c.JSON(
+		http.StatusOK, SignUserResponse{
+			Token: token,
+			User: UserResponse{
+				Email:        user.Email,
+				ProfileImage: profileImage,
+			},
 		},
-	})
+	)
 }

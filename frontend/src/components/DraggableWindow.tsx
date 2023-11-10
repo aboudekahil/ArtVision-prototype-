@@ -1,10 +1,16 @@
-import React, { CSSProperties, HTMLAttributes, useEffect, useRef } from "react";
+import React, {
+  CSSProperties,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useDrag } from "@use-gesture/react";
 import { animated, useSpring } from "@react-spring/web";
+import cm from "../utils/cm.ts";
 
 interface DraggableWindowProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
-  locked?: boolean;
   initialPosition?: { x: number; y: number };
 }
 
@@ -12,15 +18,13 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
   children,
   style,
   initialPosition = { x: 0, y: 0 },
-  locked = false,
+  className,
   ...props
 }) => {
+  const [locked, setLocked] = useState(true);
   const divRef = useRef<HTMLDivElement>(null);
   const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
-
   const _style: CSSProperties = {
-    display: "inline-block",
-    touchAction: "none",
     ...style,
   };
 
@@ -35,19 +39,36 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
 
   useEffect(() => {
     api.start(initialPosition);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const bindProps = locked ? {} : bind();
 
   return (
-    <animated.div
-      ref={divRef}
-      {...bindProps}
-      style={{ ..._style, x, y }}
-      {...props}
-    >
-      {children}
-    </animated.div>
+    <>
+      <animated.div
+        ref={divRef}
+        {...bindProps}
+        className={cm("inline-block touch-none", className, {
+          "shadow-lg shadow-orange-700": locked,
+        })}
+        style={{ ..._style, x, y }}
+        {...props}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          setLocked(!locked);
+        }}
+      >
+        <span
+          className={cm({
+            "pointer-events-none": !locked,
+          })}
+        >
+          {children}
+        </span>
+      </animated.div>
+    </>
   );
 };
 

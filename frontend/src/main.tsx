@@ -1,4 +1,11 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import { AuthContextProvider } from "./contexts/AuthContext.tsx";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
+const root = document.getElementById("root")!;
+
+ReactDOM.createRoot(root).render(
+  <AuthContextProvider>
+    <App />
+  </AuthContextProvider>,
+);

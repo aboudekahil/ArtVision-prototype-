@@ -1,53 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import DrawPage from "./pages/DrawPage";
 import SignUpPage from "./pages/SignUpPage";
-import BasePage from "./pages/BasePage";
-import LocalStorageHandler from "./utils/LocalStorageHandler";
-import Requests from "./http-common";
-import { LocalStorageUser } from "./shared.types";
-import CreateRoom from "./pages/CreateRoom";
-import Room from "./pages/Rooms";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <BasePage />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <h1>Hello world</h1>,
-      },
-      {
-        path: "/draw",
-        element: <DrawPage />,
-      },
-      {
-        path: "/create",
-        element: <CreateRoom />,
-      },
-      { path: "/room/:roomID", element: <Room /> },
-    ],
-  },
-  {
-    path: "/signup",
-    element: <SignUpPage />,
-  },
-]);
+import SignInPage from "./pages/SignInPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
+// import { AuthContext } from "./contexts/AuthContext.tsx";
+import Header from "./components/Header.tsx";
 
 function App(): React.JSX.Element {
-  useEffect(() => {
-    const user =
-      LocalStorageHandler.getFromKeyParsed<LocalStorageUser>("curru");
+  // const { user } = useContext(AuthContext);
 
-    if (user) Requests.defaults.headers.common["Authorization"] = user.token;
+  return (
+    <Router>
+      <Routes>
+        <Route path={"*"} errorElement={<ErrorPage />} />
+        <Route path={"/"} element={<Header />} />
+        <Route path={"/draw"} element={<DrawPage />} />
+        <Route path={"/profile"} element={<ProfilePage />} />
 
-    console.log(Requests.defaults.headers);
-  }, []);
-  return <RouterProvider router={router} />;
+        <Route path={"/signin"} element={<SignInPage />} />
+        <Route path={"/signup"} element={<SignUpPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

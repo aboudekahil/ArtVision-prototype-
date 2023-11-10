@@ -19,6 +19,6 @@ func main() {
 	err := http.ListenAndServe(":8081", nil)
 
 	if err != nil {
-		log.Fatal((err))
+		log.Fatal(err)
 	}
 }

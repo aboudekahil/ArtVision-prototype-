@@ -5,9 +5,12 @@ export async function authenticate(user: {
   email: string;
   password: string;
 }): Promise<LocalStorageUser> {
-  return (await Requests.post<LocalStorageUser>("auth/signup", user)).data;
+  return (await Requests.post<LocalStorageUser>("auth/signin", user)).data;
 }
 
-export async function userProfileImage(email: string): Promise<boolean> {
-  return Requests.post("pfp", { email: email });
+export async function createUser(user: {
+  email: string;
+  password: string;
+}): Promise<LocalStorageUser> {
+  return (await Requests.post<LocalStorageUser>("auth/signup", user)).data;
 }

@@ -7,5 +7,5 @@ import (
 )
 
 func ApiRoutes(apiGroup *echo.Group) {
-	apiGroup.POST("/pfp", controllers.ProfilePictureOops)
+	apiGroup.POST("/changeProfile", controllers.ChangeProfileRequest)
 }

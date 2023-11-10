@@ -1,12 +1,13 @@
 package main
 
 import (
-	avConfs "artvision/backend/config"
-	avInits "artvision/backend/init"
-	"artvision/backend/routes"
-	"artvision/backend/services"
+	"log"
 	"os"
 	"strings"
+
+	avConfs "artvision/backend/config"
+	"artvision/backend/routes"
+	"artvision/backend/services"
 
 	"github.com/go-playground/validator/v10"
 	echojwt "github.com/labstack/echo-jwt/v4"
@@ -16,9 +17,14 @@ import (
 
 func main() {
 	avConfs.ConfEnv()
-	avConfs.InitDb(os.Getenv("DB_URL"))
+	err := avConfs.InitDb(os.Getenv("DB_URL"))
 
-	e := avInits.InitEcho()
+	if err != nil {
+		log.Fatal("Error init echo")
+		return
+	}
+
+	e := avConfs.InitEcho()
 
 	e.Validator = &services.CustomValidator{
 		Validator: validator.New(validator.WithRequiredStructEnabled()),

@@ -1,6 +1,7 @@
 import { useRouteError } from "react-router-dom";
 import DraggableWindow from "../components/DraggableWindow";
 import ArtLink from "../components/ArtLink";
+import React from "react";
 
 const ErrorPage: React.FC = () => {
   const error = useRouteError() as {
@@ -15,6 +16,7 @@ const ErrorPage: React.FC = () => {
           draggable={false}
           className="w-20 stroke-red-50 no-drag invert drop-shadow-[0_0px_10px_rgba(226,204,74,0.25)] cursor-pointer"
           src="/Logo.svg"
+          alt={"logo"}
         />
       </DraggableWindow>
       <span className="flex justify-center items-center">
