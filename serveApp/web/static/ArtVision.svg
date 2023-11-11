@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-4, .cls-5 {
+        stroke: #4c2b20;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 25px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-5 {
+        fill: #4c2b20;
+      }
+
+      .cls-2 {
+        stroke-linejoin: bevel;
+      }
+
+      .cls-3 {
+        fill: #2e1a13;
+      }
+
+      .cls-4 {
+        fill: #ebebe6;
+      }
+
+      .cls-4, .cls-5 {
+        stroke-width: 10.14px;
+      }
+    </style>
+  </defs>
+  <path id="Line_3" data-name="Line 3" class="cls-1" d="M499.984,146.49h1V690.073h-1V146.49Z"/>
+  <path id="Line_2" data-name="Line 2" class="cls-2" d="M377.547,743.027v-1H631.439v1H377.547Z"/>
+  <path id="Line_1" data-name="Line 1" class="cls-2" d="M343.6,857.547l-0.488-.531,139.26-601.4,1.182,2.089Z"/>
+  <path id="Line_1-2" data-name="Line 1" class="cls-2" d="M655.183,855.985l0.486-.53L516.832,254.05l-1.178,2.09Z"/>
+  <path class="cls-3" d="M419.653,684.4H585.665v1.158a21,21,0,0,1-21,21H439.653a20,20,0,0,1-20-20V684.4Z"/>
+  <path class="cls-3" d="M437.324,189.958H563.642a20,20,0,0,1,20,20v1.971H417.324v-1.971A20,20,0,0,1,437.324,189.958Z"/>
+  <path class="cls-4" d="M268.067,217.02H731.905V679.554H268.067V217.02Z"/>
+  <path class="cls-5" d="M425.07,314.616H449V494.925H425.07V314.616Z"/>
+  <path class="cls-5" d="M612.793,314.058h24.15V494.1h-24.15V314.058Z"/>
+</svg>

@@ -8,7 +8,7 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
-    outDir: "../backend/web/static/",
+    outDir: "../serveApp/web/static/",
     manifest: true,
   },
 });
