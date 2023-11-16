@@ -5,24 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73cdd871-d28f-44ed-86e4-1c809fde2dc2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/serveApp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/envConfig.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/ArtVision.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/Logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/assets/index-a7874ccd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/assets/index-f16e870b.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/static/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/config/initSockets.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/controllers/WsController.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/routes/WsRoutes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/streaming/room.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/streaming/streamer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/streaming/watcher.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/CanvasComponents/Canvas.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/CanvasComponents/StreamerCanvas.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/CanvasComponents/WatcherCanvas.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/pages/StreamingRoomPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/services/streamingService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/utils/configs.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/utils/drawingFunctions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/config/initEcho.go" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/config/initEcho.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/controllers/userController.go" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/controllers/userController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/routes/ApiRoutes.go" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/routes/ApiRoutes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/web/static/pfpimages/1687504463241.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/web/static/pfpimages/ArtVision.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/web/static/pfpimages/aboudeh003@gmail.com.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/web/static/pfpimages/defaultImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ArtImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ImageComponents/ArtImage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ArtLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ArtLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Canvas.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/HeaderComponents/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/PopupMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/HeaderComponents/PopupMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/UserProfileMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/HeaderComponents/UserProfileMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/contexts/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/contexts/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/http-common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/http-common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/DrawPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/DrawPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/SignInPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/SignInPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/SignUpPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/SignUpPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/userService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/userService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,9 +63,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2Y2LEIB4V18x8FxndBmbGvFfrFi" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -51,26 +74,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultGoTemplateProperty": "Go File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "go.import.settings.migrated": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/aboud/Documents/GitHub/ArtVision-prototype/serveApp/config",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "settings.editor.selected.configurable": "go.vgo"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aboud/Documents/GitHub/ArtVision-prototype/serveApp/config&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;go.vgo&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\aboud\Documents\GitHub\ArtVision-prototype\serveApp\config" />

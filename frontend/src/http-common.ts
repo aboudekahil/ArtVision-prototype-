@@ -1,7 +1,8 @@
 import axios from "axios";
+import { SERVER_URL } from "./utils/configs.ts";
 
 const Requests = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: `${SERVER_URL}`,
   headers: {
     "Content-Type": "application/json",
   },

@@ -5,6 +5,8 @@ import { Button, Input, Label, Text, TextField } from "react-aria-components";
 import ArtLink from "../components/ArtLink";
 import cm from "../utils/cm.ts";
 import { AuthContext } from "../contexts/AuthContext.tsx";
+import ArtImage from "../components/ImageComponents/ArtImage.tsx";
+import { useMutation } from "@tanstack/react-query";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -12,31 +14,37 @@ const SignUpPage = () => {
   const [passwordError, setPasswordError] = useState(false);
   const { setUser } = useContext(AuthContext);
 
+  const mutation = useMutation({
+    mutationFn: ({ email, password }: { email: string; password: string }) => {
+      return createUser({ email, password });
+    },
+    onSuccess: (data) => {
+      setUser(data || null);
+      navigate("/");
+    },
+  });
+
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const response = await createUser({
+    mutation.mutate({
       email: data.get("email") as string,
       password: data.get("password") as string,
     });
-
-    setUser(response);
-
-    navigate("/");
   };
+
   return (
     <div className="flex h-full w-full justify-center items-center transition">
       <div className="bg-Porple w-fit p-5 rounded flex flex-col gap-5 aspect-square">
         <div className="flex items-center">
           <ArtLink aria-label="Go Home" to={"/"}>
-            <figure>
-              <img
-                alt="ArtVision Logo"
-                aria-label="ArtVision Logo"
-                className="w-40 h-40"
-                src="/Logo.svg"
-              />
-            </figure>
+            <ArtImage
+              alt={"ArtVision Logo"}
+              aria-label="ArtVision Logo"
+              className="w-40 h-40 text-center rounded-none object-none"
+              src={"/Logo.svg"}
+              fromServer={false}
+            />
           </ArtLink>
           <h1 className="font-Inter font-bold text-5xl">Art Vision</h1>
         </div>
@@ -106,7 +114,12 @@ const SignUpPage = () => {
           </TextField>
           <Button
             aria-label="sign up"
-            className="font-Inter font-semibold p-2 rounded bg-ArtBlack"
+            className={cm(
+              "font-Inter font-semibold p-2 text-xl rounded bg-ArtBlack",
+              {
+                "animate-ping": mutation.isPending,
+              },
+            )}
             type={"submit"}
           >
             Sign Up

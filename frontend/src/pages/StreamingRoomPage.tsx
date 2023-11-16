@@ -1,11 +1,25 @@
 import Canvas from "../components/CanvasComponents/Canvas.tsx";
 import DraggableWindow from "../components/DraggableWindow";
-import React, { useEffect } from "react";
+import React from "react";
 import ColorArea from "../components/ColorArea.tsx";
 import Header from "../components/HeaderComponents/Header.tsx";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { isStreamer } from "../services/streamingService.ts";
 
-const DrawPage: React.FC = () => {
+const StreamingRoomPage: React.FC = () => {
+  const { roomId } = useParams();
+  if (!roomId) return;
+
+  const { isPending, data } = useQuery({
+    queryKey: ["isstreamer"],
+    queryFn: () => {
+      return isStreamer(roomId);
+    },
+  });
+
+  if (isPending) return "Loading...";
+
   return (
     <>
       <Header />
@@ -16,7 +30,7 @@ const DrawPage: React.FC = () => {
       >
         <Canvas
           className="bg-[#FAFAFA] rounded"
-          mode={"drawer"}
+          mode={data ? "drawer" : "watcher"}
           width={400}
           height={400}
         />
@@ -29,4 +43,4 @@ const DrawPage: React.FC = () => {
   );
 };
 
-export default DrawPage;
+export default StreamingRoomPage;

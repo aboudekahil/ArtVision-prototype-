@@ -1,8 +1,6 @@
 package config
 
 import (
-	"os"
-
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -13,12 +11,7 @@ func InitEcho() *echo.Echo {
 	e.Use(middleware.CORS())
 	e.Use(middleware.Recover())
 
-	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
-		Root:   os.Getenv("REACT_APP_PATH"),
-		Index:  "index.html",
-		Browse: false,
-		HTML5:  true,
-	}))
+	e.Static("/static", "web/static")
 
 	return e
 }

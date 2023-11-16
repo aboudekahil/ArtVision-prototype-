@@ -7,11 +7,11 @@ import {
   TextArea,
   TextField,
 } from "react-aria-components";
-import Header from "../components/Header.tsx";
+import Header from "../components/HeaderComponents/Header.tsx";
 import Requests from "../http-common.ts";
 import { toast, Toaster } from "react-hot-toast";
 import { AxiosError } from "axios";
-import ArtImage from "../components/ArtImage.tsx";
+import ArtImage from "../components/ImageComponents/ArtImage.tsx";
 
 const ProfilePage: React.FC = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -54,7 +54,6 @@ const ProfilePage: React.FC = () => {
       });
     } catch (error) {}
   };
-
   return (
     <>
       <Header />

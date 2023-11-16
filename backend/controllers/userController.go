@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -117,7 +118,7 @@ func ChangeProfileRequest(c echo.Context) error {
 		bio,
 		"pfpimages\\"+file.Filename,
 	)
-
+	fmt.Printf("Req %s", c.Request().Host)
 	if err != nil {
 		return utils.Handler.BadRequest(c, err)
 	}

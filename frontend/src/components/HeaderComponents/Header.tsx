@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import ArtLink from "./ArtLink";
-import UserProfileMenu from "./UserProfileMenu";
-import { LocalStorageUser } from "../shared.types";
-import { AuthContext } from "../contexts/AuthContext.tsx";
-import ArtImage from "./ArtImage.tsx";
+import ArtLink from "../ArtLink.tsx";
+import UserProfileMenu from "./UserProfileMenu.tsx";
+import { LocalStorageUser } from "../../shared.types.ts";
+import { AuthContext } from "../../contexts/AuthContext.tsx";
+import ArtImage from "../ImageComponents/ArtImage.tsx";
+import { useNavigate } from "react-router-dom";
+import { createNewRoom } from "../../services/streamingService.ts";
 
 type HeaderProps = {
   user?: LocalStorageUser;
@@ -11,12 +13,19 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = () => {
   const { user } = useContext(AuthContext)!;
+  const navigate = useNavigate();
+
+  const stream = async () => {
+    const roomId = await createNewRoom();
+    navigate(`/room/${roomId}`);
+  };
 
   return (
     <header className="bg-ArtBlack2 w-full h-20">
       <nav className="w-full flex items-center align-middle h-full">
         <ArtLink aria-label="home page" to={"/"}>
           <ArtImage
+            fromServer={false}
             alt="ArtVision logo"
             aria-label="ArtVision logo"
             src="/Logo.svg"
@@ -35,11 +44,11 @@ const Header: React.FC<HeaderProps> = () => {
 
         {user && (
           <ArtLink
-            to={"/draw"}
+            onPress={stream}
             aria-label="Draw"
             className="capitalize select-none selection:cursor-pointer text-xl hover:text-Porple focus-visible:text-Porple font-semibold m-5"
           >
-            Draw
+            Stream!
           </ArtLink>
         )}
         <UserProfileMenu />

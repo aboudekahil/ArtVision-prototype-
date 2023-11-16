@@ -2,24 +2,38 @@ package main
 
 import (
 	"log"
-	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
+	avConfs "artvision/backend/config"
+	"artvision/backend/routes"
+	"artvision/backend/services"
 
-	"artvision/backend/config"
+	"github.com/go-playground/validator/v10"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
-	config.ConfEnv()
-	err := config.InitDb(os.Getenv("DB_URL"))
+	avConfs.ConfEnv()
+	err := avConfs.InitDb(os.Getenv("DB_URL"))
+
 	if err != nil {
-		log.Fatal("Error init database")
+		log.Fatal("Error init echo")
 		return
 	}
 
-	router := mux.NewRouter()
+	e := avConfs.InitEcho()
 
-	log.Println("Listening on http://localhost:8080/")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	e.Validator = &services.CustomValidator{
+		Validator: validator.New(validator.WithRequiredStructEnabled()),
+	}
+
+	e.Use(middleware.CORS())
+
+	apiGroup := e.Group("/api")
+
+	routes.AuthRoute(apiGroup.Group("/auth"))
+	routes.ApiRoutes(apiGroup)
+	routes.WsRoutes(e.Group("/streaming"))
+	// e.GET("/ws", controllers.WsController)
+	e.Logger.Fatal(e.Start(os.Getenv("APP_PORT")))
 }

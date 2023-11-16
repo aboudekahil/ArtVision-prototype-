@@ -1,31 +1,39 @@
-import React, { PropsWithChildren, useRef } from "react";
+import React, { HTMLProps, PropsWithChildren, useRef } from "react";
 import { Link, To } from "react-router-dom";
 import { AriaLinkOptions, useLink } from "react-aria";
 import { mergeRefs } from "react-merge-refs";
 
 type ArtLinkProps = {
-  to: To;
+  to?: To;
   className?: string;
-  key?: React.Key;
-} & AriaLinkOptions;
+} & AriaLinkOptions &
+  HTMLProps<HTMLAnchorElement>;
 
 const ArtLink = React.forwardRef<
   HTMLAnchorElement,
   PropsWithChildren<ArtLinkProps>
->(({ to, className, key, children, ...props }, ref) => {
+>(({ to, className, children, ...props }, ref) => {
   const _ref = useRef(null);
 
   const { linkProps } = useLink(props, _ref);
+
+  if (to) {
+    return (
+      <Link
+        className={className}
+        ref={mergeRefs([ref, _ref])}
+        {...linkProps}
+        to={to}
+      >
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Link
-      className={className}
-      key={key}
-      ref={mergeRefs([ref, _ref])}
-      {...linkProps}
-      to={to}
-    >
+    <a className={className} ref={mergeRefs([ref, _ref])} {...linkProps}>
       {children}
-    </Link>
+    </a>
   );
 });
 

@@ -1,12 +1,12 @@
 import { Button } from "react-aria-components";
-import PopupMenu from "./PopupMenu";
-import { LocalStorageUser } from "../shared.types";
+import PopupMenu from "./PopupMenu.tsx";
+import { LocalStorageUser } from "../../shared.types.ts";
 import React, { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext.tsx";
-import LocalStorageHandler from "../utils/LocalStorageHandler.ts";
+import { AuthContext } from "../../contexts/AuthContext.tsx";
+import LocalStorageHandler from "../../utils/LocalStorageHandler.ts";
 import { useNavigate } from "react-router-dom";
-import ArtLink from "./ArtLink.tsx";
-import ArtImage from "./ArtImage.tsx";
+import ArtLink from "../ArtLink.tsx";
+import ArtImage from "../ImageComponents/ArtImage.tsx";
 
 type UserProfileMenuProps = {
   user?: LocalStorageUser;
@@ -16,6 +16,7 @@ const UserProfileMenu: React.FC<UserProfileMenuProps> = () => {
   const { user, setUser } = useContext(AuthContext)!;
   const navigate = useNavigate();
 
+  // return sign in button
   if (!user) {
     return (
       <ArtLink
