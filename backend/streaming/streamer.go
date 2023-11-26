@@ -45,10 +45,11 @@ func (streamer Streamer) ReadPump() {
 			) {
 				log.Printf("error: %v", err)
 			}
+			streamer.Room.EndStream <- true
+
 			break
 		}
 		message = bytes.TrimSpace(bytes.Replace(message, newline, space, -1))
-		log.Printf("%s", message)
 		streamer.Room.Broadcast <- message
 	}
 }

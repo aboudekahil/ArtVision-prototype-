@@ -2,7 +2,7 @@ import React, {
   createContext,
   PropsWithChildren,
   useCallback,
-  useEffect,
+  useLayoutEffect,
   useState,
 } from "react";
 import { LocalStorageUser } from "../shared.types.ts";
@@ -45,7 +45,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setFullProfile(user.user.bio !== undefined);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!user) {
       LocalStorageHandler.clearItem("curru");
       Requests.defaults.headers.common["Authorization"] = null;

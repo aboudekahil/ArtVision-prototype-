@@ -6,6 +6,8 @@ import { AuthContext } from "../../contexts/AuthContext.tsx";
 import ArtImage from "../ImageComponents/ArtImage.tsx";
 import { useNavigate } from "react-router-dom";
 import { createNewRoom } from "../../services/streamingService.ts";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
 type HeaderProps = {
   user?: LocalStorageUser;
@@ -14,11 +16,20 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = () => {
   const { user } = useContext(AuthContext)!;
   const navigate = useNavigate();
+  const mutation = useMutation({
+    mutationFn: () => {
+      return toast.promise(createNewRoom(), {
+        loading: "Creating room...",
+        success: "Room Created!",
+        error: (err) => err,
+      });
+    },
+    onSuccess: (roomId: string) => {
+      navigate(`/room/${roomId}`);
+    },
+  });
 
-  const stream = async () => {
-    const roomId = await createNewRoom();
-    navigate(`/room/${roomId}`);
-  };
+  const stream = () => mutation.mutate();
 
   return (
     <header className="bg-ArtBlack2 w-full h-20">
@@ -45,7 +56,7 @@ const Header: React.FC<HeaderProps> = () => {
         {user && (
           <ArtLink
             onPress={stream}
-            aria-label="Draw"
+            aria-label="Stream"
             className="capitalize select-none selection:cursor-pointer text-xl hover:text-Porple focus-visible:text-Porple font-semibold m-5"
           >
             Stream!

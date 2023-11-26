@@ -13,7 +13,6 @@ const SignUpPage = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const { setUser } = useContext(AuthContext);
-
   const mutation = useMutation({
     mutationFn: ({ email, password }: { email: string; password: string }) => {
       return createUser({ email, password });

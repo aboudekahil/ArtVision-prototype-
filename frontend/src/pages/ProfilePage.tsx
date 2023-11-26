@@ -24,9 +24,8 @@ const ProfilePage: React.FC = () => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     data.append("avatar", selectedFile);
-    let response = Requests.post("changeProfile", data, {
+    let response = Requests.post("api/changeProfile", data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -140,7 +139,7 @@ const ProfilePage: React.FC = () => {
               >
                 <ArtImage
                   ref={imgRef}
-                  className="max-w-[400px]"
+                  className="max-w-[400px] min-w-[400px]"
                   src={user?.user.profile_image || "pfpimages/defaultImage.png"}
                   alt={"profile image"}
                 />

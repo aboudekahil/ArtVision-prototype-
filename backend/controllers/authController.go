@@ -61,7 +61,7 @@ func SignUserUp(c echo.Context) error {
 
 	return c.JSON(
 		http.StatusCreated, SignUserResponse{
-			Token: "Bearer " + token,
+			Token: token,
 			User: UserResponse{
 				Email:        user.Email,
 				ProfileImage: string(imagePath),

@@ -11,14 +11,13 @@ const StreamingRoomPage: React.FC = () => {
   const { roomId } = useParams();
   if (!roomId) return;
 
-  const { isPending, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ["isstreamer"],
     queryFn: () => {
       return isStreamer(roomId);
     },
+    refetchOnWindowFocus: false,
   });
-
-  if (isPending) return "Loading...";
 
   return (
     <>

@@ -10,7 +10,9 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/labstack/echo/v4"
 
+	"artvision/backend/services"
 	"artvision/backend/streaming"
+	"artvision/backend/utils"
 )
 
 var (
@@ -19,7 +21,6 @@ var (
 			return true
 		},
 	}
-	Rooms = make(map[string]*streaming.Room)
 )
 
 func NewRoomController(c echo.Context) error {
@@ -35,14 +36,22 @@ func NewRoomController(c echo.Context) error {
 
 	room.Streamer = streamer
 
-	Rooms[roomID] = room
+	streaming.Rooms[roomID] = room
+
+	if err := services.CreateRoom(
+		roomID,
+		claims["id"].(float64),
+		"",
+	); err != nil {
+		return utils.Handler.InternalServerError(c, err)
+	}
 
 	return c.String(http.StatusOK, roomID)
 }
 
 func StreamController(c echo.Context) error {
 	roomID := c.Param("roomID")
-	room, ok := Rooms[roomID]
+	room, ok := streaming.Rooms[roomID]
 
 	if !ok {
 		return c.String(http.StatusNotFound, "Room does not exist")
@@ -105,7 +114,7 @@ func StreamController(c echo.Context) error {
 
 func IsStreamer(c echo.Context) error {
 	roomID := c.Param("roomID")
-	room, ok := Rooms[roomID]
+	room, ok := streaming.Rooms[roomID]
 
 	if !ok {
 		return c.String(http.StatusNotFound, "Room does not exist")

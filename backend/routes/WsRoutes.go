@@ -10,9 +10,9 @@ import (
 	"artvision/backend/controllers"
 )
 
-func WsRoutes(wsRouter *echo.Group) {
+func StreamingRoutes(streamRouter *echo.Group) {
 
-	wsRouter.Use(
+	streamRouter.Use(
 		echojwt.WithConfig(
 			echojwt.Config{
 				SigningKey:    []byte(os.Getenv("JWT_SECRET")),
@@ -24,7 +24,7 @@ func WsRoutes(wsRouter *echo.Group) {
 		),
 	)
 
-	wsRouter.POST("/newRoom", controllers.NewRoomController)
-	wsRouter.GET("/room/:roomID", controllers.StreamController)
-	wsRouter.GET("/room/:roomID/isStreamer", controllers.IsStreamer)
+	streamRouter.POST("/newRoom", controllers.NewRoomController)
+	streamRouter.GET("/room/:roomID", controllers.StreamController)
+	streamRouter.GET("/room/:roomID/isStreamer", controllers.IsStreamer)
 }

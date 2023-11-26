@@ -7,7 +7,6 @@ import SignInPage from "./pages/SignInPage.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
 import Header from "./components/HeaderComponents/Header.tsx";
 import StreamingRoomPage from "./pages/StreamingRoomPage.tsx";
-import { isStreamer } from "./services/streamingService.ts";
 
 function App(): React.JSX.Element {
   return (
@@ -18,13 +17,7 @@ function App(): React.JSX.Element {
         <Route path={"/profile"} element={<ProfilePage />} />
         <Route path={"/signin"} element={<SignInPage />} />
         <Route path={"/signup"} element={<SignUpPage />} />
-        <Route
-          path={"/room/:roomId"}
-          element={<StreamingRoomPage />}
-          loader={async ({ params }) => {
-            return isStreamer(params.roomId || "");
-          }}
-        />
+        <Route path={"/room/:roomId"} element={<StreamingRoomPage />} />
       </Routes>
     </Router>
   );

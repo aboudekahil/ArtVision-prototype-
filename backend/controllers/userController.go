@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -9,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/google/uuid"
 
 	"artvision/backend/services"
 
@@ -93,13 +93,15 @@ func ChangeProfileRequest(c echo.Context) error {
 	}
 	defer src.Close()
 
+	fileName := uuid.NewString() + file.Filename
+
 	dst, err := os.Create(
 		path.Join(
 			".",
 			"web",
 			"static",
 			"pfpimages",
-			file.Filename,
+			fileName,
 		),
 	)
 	if err != nil {
@@ -116,9 +118,8 @@ func ChangeProfileRequest(c echo.Context) error {
 		name,
 		username,
 		bio,
-		"pfpimages\\"+file.Filename,
+		"pfpimages\\"+fileName,
 	)
-	fmt.Printf("Req %s", c.Request().Host)
 	if err != nil {
 		return utils.Handler.BadRequest(c, err)
 	}
@@ -128,7 +129,7 @@ func ChangeProfileRequest(c echo.Context) error {
 			"name":          name,
 			"username":      username,
 			"bio":           bio,
-			"profile_image": "pfpimages\\" + file.Filename,
+			"profile_image": "pfpimages\\" + fileName,
 		},
 	)
 }

@@ -33,7 +33,7 @@ func main() {
 
 	routes.AuthRoute(apiGroup.Group("/auth"))
 	routes.ApiRoutes(apiGroup)
-	routes.WsRoutes(e.Group("/streaming"))
+	routes.StreamingRoutes(e.Group("/streaming"))
 	// e.GET("/ws", controllers.WsController)
 	e.Logger.Fatal(e.Start(os.Getenv("APP_PORT")))
 }
